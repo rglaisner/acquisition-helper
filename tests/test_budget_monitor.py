@@ -17,6 +17,16 @@ def test_budget_monitor_exceeds_ceiling():
 
 
 def test_budget_preflight():
+    monitor = BudgetMonitor(profile=get_profile(ControlProfileName.CONSERVATIVE))
+    assert monitor.preflight_ok(100_000)
+    assert not monitor.preflight_ok(300_000)
+
+
+def test_budget_monitor_unlimited_default():
     monitor = BudgetMonitor(profile=get_profile(ControlProfileName.STANDARD))
-    assert monitor.preflight_ok(400_000)
-    assert not monitor.preflight_ok(600_000)
+    assert monitor.ceiling is None
+    assert monitor.is_unlimited
+    monitor.record(total=10_000_000)
+    assert not monitor.exceeds_ceiling()
+    assert not monitor.requires_hitl()
+    assert monitor.preflight_ok(10_000_000)

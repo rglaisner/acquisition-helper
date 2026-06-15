@@ -10,7 +10,7 @@ from acquisition_helper.models.intake import ControlProfileName
 @dataclass(frozen=True)
 class ControlProfile:
     name: ControlProfileName
-    token_ceiling: int
+    token_ceiling: int | None
     hitl_on_requirements: bool
     hitl_on_workflow: bool
     hitl_on_budget: bool
@@ -28,7 +28,7 @@ PROFILES: dict[ControlProfileName, ControlProfile] = {
     ),
     ControlProfileName.STANDARD: ControlProfile(
         name=ControlProfileName.STANDARD,
-        token_ceiling=500_000,
+        token_ceiling=None,
         hitl_on_requirements=True,
         hitl_on_workflow=True,
         hitl_on_budget=True,
