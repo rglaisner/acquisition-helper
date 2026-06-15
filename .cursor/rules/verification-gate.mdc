@@ -1,0 +1,13 @@
+---
+description: Evidence gate before claiming work complete
+alwaysApply: false
+---
+
+# Verification Gate
+
+Before marking work done:
+
+1. Run `python -m py_compile` on changed Python files
+2. Run `pytest tests/` for touched control/flow logic
+3. Confirm tier YAML IDs exist in `agent_registry.py`
+4. Do not claim `crewai run` passed without evidence

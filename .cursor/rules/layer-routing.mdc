@@ -1,0 +1,18 @@
+---
+description: Layer boundaries for Acquisition Helper source tree
+alwaysApply: false
+---
+
+# Layer Routing
+
+| Layer | Path | Edit when |
+|-------|------|-----------|
+| Flow | `src/acquisition_helper/flow/` | Orchestration, state, HITL steps |
+| Crews | `src/acquisition_helper/crews/` | Agent/task definitions |
+| Control | `src/acquisition_helper/control/` | Registry, budget, planner, profiles |
+| Tools | `src/acquisition_helper/tools/` | Serper, custom tools |
+| Models | `src/acquisition_helper/models/` | Pydantic schemas |
+| Reporting | `src/acquisition_helper/reporting/` | Markdown output |
+| Config | `src/acquisition_helper/config/` | YAML only |
+
+Do not mix orchestration logic into crew YAML or vice versa.

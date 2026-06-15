@@ -1,0 +1,94 @@
+explore:
+  description: >
+    Identify and index freemium APIs, M&A databases, and data scraping targets to fuel this research.
+  expected_output: A directory of accessible data sources and API endpoints for SME acquisition data.
+  agent: explorer
+
+scope:
+  description: >
+    Using strategic intent: {strategic_intent}
+    Sector: {sector}. Geography: {geography}. Financial constraints: {financial_constraints}.
+    Define exact financial, sector, and operational constraints for the swarm.
+  expected_output: Strict scoping parameters for Phase 2.
+  agent: director
+
+profile:
+  description: Execute deep dive into operational profiles of target sectors for {sector}.
+  expected_output: Operational profile report.
+  agent: profiler
+  async_execution: true
+
+finance:
+  description: Model scenarios covering DSCR while generating innovation surplus per {financial_constraints}.
+  expected_output: Financial playbook.
+  agent: financier
+  async_execution: true
+
+source:
+  description: >
+    Compile {candidate_count} early candidate profiles matching the exact scope in {geography}.
+  expected_output: Database of target listings.
+  agent: sourcer
+  async_execution: true
+
+integrated_research:
+  description: >
+    Using strategic intent: {strategic_intent}
+    Sector: {sector}. Geography: {geography}. Constraints: {financial_constraints}.
+    Produce integrated operational, financial, and sourcing analysis with {candidate_count} candidate profiles.
+  expected_output: Unified M&A research brief with candidate shortlist.
+  agent: integrated_analyst
+
+tech:
+  description: Analyze the candidates from Phase 2 for tech-debt and AgentOS deployment friction.
+  expected_output: IT Integration Feasibility Report.
+  agent: tech_architect
+  context: [profile, source]
+
+workforce:
+  description: >
+    Analyze the workforce topology of Phase 2 targets. Are they viable for digital twin
+    modeling and skill-based reorganization?
+  expected_output: Talent Intelligence & Transformation Assessment.
+  agent: workforce_analyst
+  context: [profile, source]
+
+risk:
+  description: Run risk modeling against the candidates and financial scenarios. Identify deal-killers.
+  expected_output: Risk & Liability Matrix.
+  agent: risk_assessor
+  context: [finance, source]
+
+validate:
+  description: >
+    Audit the outputs of Phase 3. Flag any missing details, generic statements, or deviations
+    from strategic intent: {strategic_intent}
+  expected_output: Validation clearance or mandate for rework.
+  agent: validator
+
+redteam:
+  description: >
+    Subject the validated data to a zealous smoke test. What critical market shifts, financing traps,
+    or operational realities are missing? Answer the unasked questions.
+  expected_output: Red Team Addendum detailing hidden blind spots and unasked questions.
+  agent: red_teamer
+  context: [tech, workforce, risk, validate]
+
+report:
+  description: >
+    Synthesize the validated Phase 3 intelligence and the Phase 4 Red Team insights into a
+    flowing, exhaustive executive report.
+  expected_output: Final SME Platform Acquisition Strategy & Assessment.
+  agent: reporter
+
+qa_critic:
+  description: >
+    Score the research crew output against strategic intent. Return PASS if score >= 0.7 else FAIL with gaps.
+  expected_output: JSON with passed (bool), score (0-1), feedback (string), requires_rework (bool).
+  agent: critic_supervisor
+
+prompt_refine:
+  description: >
+    Based on QA feedback, rewrite task instructions for the next research iteration.
+  expected_output: Refined task prompt block for rework.
+  agent: prompt_refiner

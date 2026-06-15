@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "python scripts/hooks/validate-crew-safety.py"
+      }
+    ]
+  }
+}

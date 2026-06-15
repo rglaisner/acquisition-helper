@@ -1,0 +1,13 @@
+---
+description: Python safety — no committed secrets, typed errors, no empty except
+globs: src/**/*.py
+alwaysApply: false
+---
+
+# Agent Safety — Python
+
+- Never hardcode API keys; read from `os.environ` after `load_dotenv`.
+- Raise `EnvironmentError` for missing required keys at startup.
+- Caught exceptions are `unknown` — narrow with `isinstance(error, Exception)`.
+- No bare `except:` or `except: pass`.
+- Log structured context on failure (tier, phase, token count).

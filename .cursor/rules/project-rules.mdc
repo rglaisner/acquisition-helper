@@ -1,0 +1,55 @@
+---
+description: Acquisition Helper core behavioral guidelines — Python, CrewAI Flow + Crews, typed errors, minimal scope
+alwaysApply: true
+---
+
+# Acquisition Helper Project Rules
+
+M&A SME acquisition research pipeline — CrewAI Flow orchestration with tiered research crews.
+
+## Stack (do not deviate without explicit approval)
+
+| Layer | Technology |
+|-------|------------|
+| Runtime | Python 3.11+, CrewAI >= 1.2 |
+| Orchestration | CrewAI Flow (`src/acquisition_helper/flow/`) |
+| Agents | CrewAI Crews with YAML config (`@CrewBase`) |
+| Control | `src/acquisition_helper/control/` (budget, HITL, planner) |
+| LLM | Gemini via CrewAI `LLM` (env: `GEMINI_API_KEY`) |
+| Search | Serper via `crewai_tools` (env: `SERPER_API_KEY`) |
+| Config | YAML in `src/acquisition_helper/config/` |
+| Output | Markdown reports in `output/` |
+
+**Not in stack:** TypeScript frontend (CLI + Mermaid for now), committed secrets.
+
+---
+
+## Core principles
+
+- **DRY / KISS:** Reuse `control/`, `models/`, `reporting/` before new abstractions.
+- **No placeholders:** No `TODO`, stubs, or truncated implementations.
+- **Minimal scope:** Fix only what the task requires.
+- **Typed Python:** Pydantic models at boundaries; no `any`; handle `except` with `unknown`.
+
+---
+
+## Layout
+
+| Path | Responsibility |
+|------|----------------|
+| `flow/` | `@Flow` state machine, HITL gates |
+| `crews/` | `@CrewBase` intake, research, admin crews |
+| `control/` | Registry, budget, planner, profiles (no LLM) |
+| `tools/` | Serper and custom tools |
+| `models/` | Pydantic intake, workflow, report schemas |
+| `config/` | agents/tasks YAML, defaults |
+| `reporting/` | Markdown report assembly |
+
+---
+
+## Pre-change checklist
+
+1. Which layer am I editing? (`layer-routing.mdc`)
+2. Does tier YAML match `agent_registry.py`?
+3. Are secrets only in `.env`?
+4. Will `python -m py_compile` pass on touched files?

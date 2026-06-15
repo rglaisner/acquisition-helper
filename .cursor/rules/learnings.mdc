@@ -1,0 +1,8 @@
+---
+description: Append recurring patterns to docs/learnings.md
+alwaysApply: false
+---
+
+# Learnings
+
+When a bug recurs or a non-obvious fix is found, append a row to `docs/learnings.md` with symptom, cause, and fix.

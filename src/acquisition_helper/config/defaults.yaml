@@ -1,0 +1,23 @@
+strategic_intent: |
+  Target: A stable, cash-flowing SME to serve as a platform for continuous intelligent operations,
+  AgentOS integration, and Forward Deployed Engineering (FDE) services.
+  Goal: Deploy structural digital twins and transition the workforce into augmented operators,
+  generating surplus cash flow for innovation without disrupting the core revenue engine.
+
+defaults:
+  sector: "SME services / light industrial"
+  geography: "North America, Western Europe"
+  financial_constraints: "EBITDA $2M–$15M; DSCR > 1.25x post-LBO"
+  candidate_count: 12
+  tier: standard
+  control_profile: standard
+
+token_estimates:
+  essential: { min: 50000, max: 120000 }
+  standard: { min: 120000, max: 250000 }
+  advanced: { min: 250000, max: 400000 }
+  expert: { min: 400000, max: 600000 }
+
+qa:
+  max_rework_loops: 2
+  pass_score_threshold: 0.7

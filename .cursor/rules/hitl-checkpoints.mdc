@@ -1,0 +1,23 @@
+---
+description: Human-in-the-loop checkpoints for dev and runtime changes
+alwaysApply: false
+---
+
+# HITL Checkpoints
+
+## Dev HITL (require user approval before implementing)
+
+- Changing tier agent matrix (`agent_registry.py`)
+- Changing default LLM models in `defaults.yaml`
+- Changing `TOKEN_BUDGET` defaults or control profile ceilings
+- Removing or bypassing QA / admin loops
+
+## Runtime HITL (built into Flow)
+
+| Gate | Trigger |
+|------|---------|
+| Requirements | After intake — approve / edit / cancel |
+| Workflow | After Mermaid plan generated |
+| Budget | Token usage exceeds profile ceiling |
+
+Profiles: `conservative` (more gates), `standard`, `aggressive` (fewer gates).

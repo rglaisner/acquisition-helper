@@ -1,0 +1,23 @@
+---
+description: Supervisor routing for multi-step Acquisition Helper tasks
+alwaysApply: false
+---
+
+# Crew Orchestration
+
+Supervisor routes; one skill per subtask. Never edit across layers in one pass.
+
+## Mandatory verification
+
+After edits to `flow/` or `crews/`:
+1. `python -m py_compile` on changed modules
+2. Run relevant unit tests in `tests/`
+
+## Routing
+
+| Intent | Agents (order) |
+|--------|----------------|
+| Flow / HITL change | acquisition-flow → control-layer → verification |
+| Research crew / YAML | m-and-a-research → proactive-guardian → verification |
+| Tools / Serper | crew-tools → verification |
+| Tier matrix change | control-layer → hitl-checkpoints → verification |
