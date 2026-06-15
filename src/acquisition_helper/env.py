@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import importlib.util
 import os
 from pathlib import Path
 
@@ -29,12 +30,21 @@ def load_dotenv() -> None:
         pass
 
 
+def _validate_google_genai_provider() -> None:
+    if importlib.util.find_spec("google.genai") is None:
+        raise EnvironmentError(
+            "Google Gen AI SDK is not installed. CrewAI Gemini models require "
+            'crewai[google-genai]. Reinstall dependencies: uv sync or pip install -e ".'
+        )
+
+
 def validate_environment(*, require_serper: bool = False) -> None:
     load_dotenv()
     if not os.environ.get("GEMINI_API_KEY"):
         raise EnvironmentError(
             "GEMINI_API_KEY is not set. Export it or add it to .env in the project root."
         )
+    _validate_google_genai_provider()
     if require_serper and not os.environ.get("SERPER_API_KEY"):
         raise EnvironmentError(
             "SERPER_API_KEY is not set but web search tools are required for this tier."
@@ -42,8 +52,8 @@ def validate_environment(*, require_serper: bool = False) -> None:
 
 
 def get_llm_model_lite() -> str:
-    return os.environ.get("LLM_MODEL_LITE", "gemini/gemini-2.0-flash")
+    return os.environ.get("LLM_MODEL_LITE", "gemini/gemini-2.5-flash-lite")
 
 
 def get_llm_model_pro() -> str:
-    return os.environ.get("LLM_MODEL_PRO", "gemini/gemini-2.0-flash")
+    return os.environ.get("LLM_MODEL_PRO", "gemini/gemini-3-flash-preview")

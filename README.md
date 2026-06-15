@@ -16,6 +16,10 @@ AI-driven M&A research pipeline for SME platform acquisition targets. Built with
 python -m venv .venv
 .venv\Scripts\activate   # Windows
 pip install -e .
+# or with uv:
+uv sync
+
+# Gemini models require the google-genai SDK (included via crewai[google-genai] in pyproject.toml).
 
 # 2. Configure environment
 copy .env.example .env

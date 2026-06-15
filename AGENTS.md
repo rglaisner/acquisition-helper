@@ -78,6 +78,7 @@ WorkflowOrchestrator, IntakeAnalyst, FlowPlanner, BudgetMonitor, ComplianceValid
 | Symptom | Cause | Fix |
 |---------|-------|-----|
 | `GEMINI_API_KEY is not set` | Missing env | Copy `.env.example` → `.env` |
+| `Google Gen AI SDK is not installed` | Missing `crewai[google-genai]` | Run `uv sync` or `pip install -e .` |
 | Partial report on interrupt | Ctrl+C mid-run | See `output/` partial markdown |
 | Token HITL loop | Exceeded profile ceiling | Approve or use `essential` tier |
 
