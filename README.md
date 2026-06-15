@@ -30,6 +30,12 @@ crewai run
 # or
 python -m acquisition_helper.main
 
+# Defaults, no prompts (automation)
+python -m acquisition_helper.main --yes
+
+# Specific tier
+python -m acquisition_helper.main --tier expert --yes
+
 # Legacy shim (deprecated)
 python Baseline.py
 ```
