@@ -19,11 +19,16 @@ pip install -e .
 # or with uv:
 uv sync
 
-# Gemini models require the google-genai SDK (included via crewai[google-genai] in pyproject.toml).
+# Gemini models require the google-genai SDK (included via crewai[google-genai] in pyproject.toml). OpenAI integrated by default in CrewAI. 
+
 
 # 2. Configure environment
 copy .env.example .env
 # Edit .env — set GEMINI_API_KEY (required), SERPER_API_KEY (optional)
+#           - set default and pro model 
+#           - Set Control profile: conservative | standard | aggressive
+#           - set Tier: essential | standard | advanced | expert
+
 
 # 3. Run interactive flow
 crewai run
